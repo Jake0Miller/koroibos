@@ -2,21 +2,19 @@ require 'rails_helper'
 
 describe 'GET /api/v1/events' do
   before :each do
-    oly_1 = Olympian.create!(name: 'Bob', sex: 'M', age: 20, height: 150, weight: 100, team: 'Romania', sport: 'Underwater Basket Weaving')
-    oly_2 = Olympian.create!(name: 'Jane', sex: 'M', age: 30, height: 150, weight: 120, team: 'USA', sport: 'Underwater Basket Weaving')
-    oly_3 = Olympian.create!(name: 'Jim', sex: 'F', age: 40, height: 150, weight: 100, team: 'Russia', sport: 'Underwater Basket Weaving')
-    event = Event.create!(sport: 'Swimming', event: 'Underwater Basket Weaving')
-    OlympianEvent.create!(olympian: oly_1, event: event, medal: 'Gold')
-    OlympianEvent.create!(olympian: oly_2, event: event, medal: 'Silver')
-    OlympianEvent.create!(olympian: oly_3, event: event)
+    Event.create!(sport: 'Swimming', event: 'Underwater Basket Weaving')
+    Event.create!(sport: 'Swimming', event: 'Water Polo')
+    Event.create!(sport: 'Running', event: '100m')
+    Event.create!(sport: 'Running', event: '200m')
+    Event.create!(sport: 'Running', event: '200000000m')
   end
 
-  it 'sends a list of Olympian stats' do
-    get '/api/v1/olympian_stats'
+  it 'sends a list of events' do
+    get '/api/v1/events'
 
     expect(response).to be_successful
 
-    stats = JSON.parse(response.body, symbolize_names: true)[:olympian_stats]
+    events = JSON.parse(response.body, symbolize_names: true)[:events]
 
     expect(stats.length).to eq(3)
     expect(stats[:total_competing_olympians]).to eq(3)
