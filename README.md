@@ -33,6 +33,7 @@ Run tests with
 * Rails v5.2.3
 * PostgreSQL v11.5
 * RSpec testing suite
+* Travis CI
 
 # Core Contributors
 
