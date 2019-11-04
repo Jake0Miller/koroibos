@@ -18,9 +18,9 @@ RSpec.describe Olympian do
 
   describe 'Methods' do
     before :each do
-      @oly_1 = Olympian.create!(name: 'Bob', sex: 'X', age: 20, height: 150, weight: 100, team: 'Romania', sport: 'Underwater Basket Weaving')
-      @oly_2 = Olympian.create!(name: 'Jane', sex: 'X', age: 30, height: 150, weight: 100, team: 'USA', sport: 'Underwater Basket Weaving')
-      @oly_3 = Olympian.create!(name: 'Jim', sex: 'X', age: 40, height: 150, weight: 100, team: 'Russia', sport: 'Underwater Basket Weaving')
+      @oly_1 = Olympian.create!(name: 'Bob', sex: 'M', age: 20, height: 150, weight: 100, team: 'Romania', sport: 'Underwater Basket Weaving')
+      @oly_2 = Olympian.create!(name: 'Jane', sex: 'M', age: 30, height: 150, weight: 100, team: 'USA', sport: 'Underwater Basket Weaving')
+      @oly_3 = Olympian.create!(name: 'Jim', sex: 'F', age: 40, height: 150, weight: 100, team: 'Russia', sport: 'Underwater Basket Weaving')
       event = Event.create!(event: 'Underwater Basket Weaving')
       OlympianEvent.create!(olympian: @oly_1, event: event, medal: 'Gold')
       OlympianEvent.create!(olympian: @oly_2, event: event, medal: 'Silver')
@@ -42,6 +42,13 @@ RSpec.describe Olympian do
     it 'self.by_age(order)' do
       expect(Olympian.by_age(:ASC)).to eq([@oly_1])
       expect(Olympian.by_age(:DESC)).to eq([@oly_3])
+    end
+
+    it 'self.stats' do
+      stats = Olympian.stats
+      expect(stats[:total_competing_olympians]).to eq(3)
+      expect(stats[:average_weight]).to eq({unit: "kg", male_olympians: 100.0, female_olympians: 100.0})
+      expect(stats[:average_age]).to eq(30.0)
     end
   end
 end
