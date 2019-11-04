@@ -19,7 +19,7 @@ class Olympian < ApplicationRecord
     }
   end
 
-  def self.youngest
-    order(age: :ASC).limit(1)
+  def self.by_age(order)
+    order(age: order).limit(1)
   end
 end
