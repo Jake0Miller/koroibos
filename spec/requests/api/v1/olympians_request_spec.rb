@@ -10,7 +10,7 @@ describe 'GET /api/v1/olympians' do
 
     expect(response).to be_successful
 
-    olympians = JSON.parse(response.body)["olympians"]
+    olympians = JSON.parse(response.body, symbolize_names: true)[:olympians]
 
     expect(olympians.length).to eq(3)
   end
