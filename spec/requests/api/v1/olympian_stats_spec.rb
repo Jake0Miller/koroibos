@@ -5,7 +5,7 @@ describe 'GET /api/v1/olympian_stats' do
     oly_1 = Olympian.create!(name: 'Bob', sex: 'M', age: 20, height: 150, weight: 100, team: 'Romania', sport: 'Underwater Basket Weaving')
     oly_2 = Olympian.create!(name: 'Jane', sex: 'M', age: 30, height: 150, weight: 120, team: 'USA', sport: 'Underwater Basket Weaving')
     oly_3 = Olympian.create!(name: 'Jim', sex: 'F', age: 40, height: 150, weight: 100, team: 'Russia', sport: 'Underwater Basket Weaving')
-    event = Event.create!(event: 'Underwater Basket Weaving')
+    event = Event.create!(sport: 'Swimming', event: 'Underwater Basket Weaving')
     OlympianEvent.create!(olympian: oly_1, event: event, medal: 'Gold')
     OlympianEvent.create!(olympian: oly_2, event: event, medal: 'Silver')
     OlympianEvent.create!(olympian: oly_3, event: event)

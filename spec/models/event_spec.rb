@@ -8,5 +8,6 @@ RSpec.describe Event do
 
   describe 'Validations' do
     it {should validate_presence_of :event}
+    it {should validate_presence_of :sport}
   end
 end
