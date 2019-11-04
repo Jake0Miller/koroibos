@@ -18,4 +18,8 @@ class Olympian < ApplicationRecord
       total_medals_won: self.total_medals_won
     }
   end
+
+  def self.youngest
+    order(age: :ASC).limit(1)
+  end
 end

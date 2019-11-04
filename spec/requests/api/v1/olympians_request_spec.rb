@@ -30,7 +30,7 @@ describe 'GET /api/v1/olympians' do
     expect(response).to be_successful
 
     olympian = JSON.parse(response.body, symbolize_names: true)
-
-    expect(olympian).to eq({:name=>"Bob", :team=>"Romania", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1})
+    
+    expect(olympian).to eq([{:name=>"Bob", :team=>"Romania", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1}])
   end
 end
