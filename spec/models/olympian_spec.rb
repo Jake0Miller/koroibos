@@ -27,6 +27,12 @@ RSpec.describe Olympian do
       OlympianEvent.create!(olympian: @oly_3, event: event)
     end
 
+    it 'total_medals_won' do
+      expect(@oly_1.total_medals_won).to eq(1)
+      expect(@oly_2.total_medals_won).to eq(1)
+      expect(@oly_3.total_medals_won).to eq(0)
+    end
+
     it 'format response' do
       expect(@oly_1.format_response).to eq({:name=>"Bob", :team=>"Romania", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1})
       expect(@oly_2.format_response).to eq({:name=>"Jane", :team=>"USA", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1})
