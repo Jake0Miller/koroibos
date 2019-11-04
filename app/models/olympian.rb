@@ -8,4 +8,14 @@ class Olympian < ApplicationRecord
   def total_medals_won
     OlympianEvent.where({olympian: self, medal: ['Bronze', 'Silver', 'Gold']}).count
   end
+
+  def format_response
+    {
+      name: self.name,
+      team: self.team,
+      age: self.age,
+      sport: self.sport,
+      total_medals_won: self.total_medals_won
+    }
+  end
 end
