@@ -22,4 +22,19 @@ class Olympian < ApplicationRecord
   def self.by_age(order)
     order(age: order).limit(1)
   end
+
+  def self.stats
+    olympians = Olympian.all
+    males = olympians.find_all {|olympian| olympian.sex == 'M'}
+    females = olympians.find_all {|olympian| olympian.sex == 'F'}
+    {
+      total_competing_olympians: olympians.length,
+      average_weight: {
+        unit: "kg",
+        male_olympians: (males.sum(&:weight) / males.length).round(1),
+        female_olympians: (females.sum(&:weight) / females.length).round(1)
+      },
+      average_age: (olympians.sum(&:age) / olympians.length).round(1)
+    }
+  end
 end

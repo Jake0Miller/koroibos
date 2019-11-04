@@ -20,7 +20,7 @@ describe 'GET /api/v1/olympian_stats' do
 
     expect(stats.length).to eq(3)
     expect(stats[:total_competing_olympians]).to eq(3)
-    expect(stats[:average_age]).to eq(3)
+    expect(stats[:average_age]).to eq(30)
     expect(stats[:average_weight]).to eq({unit: "kg", male_olympians: 110, female_olympians: 100})
   end
 end
