@@ -4,4 +4,8 @@ class Olympian < ApplicationRecord
 
   has_many :olympian_events
   has_many :events, through: :olympian_events
+
+  def total_medals_won
+    OlympianEvent.where({olympian: self, medal: ['Bronze', 'Silver', 'Gold']}).count
+  end
 end
