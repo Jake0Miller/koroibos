@@ -30,7 +30,17 @@ describe 'GET /api/v1/olympians' do
     expect(response).to be_successful
 
     olympian = JSON.parse(response.body, symbolize_names: true)
-    
+
     expect(olympian).to eq([{:name=>"Bob", :team=>"Romania", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1}])
+  end
+
+  it 'sends the oldest Olympian' do
+    get '/api/v1/olympians?age=oldest'
+
+    expect(response).to be_successful
+
+    olympian = JSON.parse(response.body, symbolize_names: true)
+
+    expect(olympian).to eq([{:name=>"Jim", :team=>"Russia", :age=>40, :sport=>"Underwater Basket Weaving", :total_medals_won=>0}])
   end
 end
