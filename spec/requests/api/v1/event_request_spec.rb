@@ -16,9 +16,10 @@ describe 'GET /api/v1/events' do
 
     events = JSON.parse(response.body, symbolize_names: true)[:events]
 
-    expect(stats.length).to eq(3)
-    expect(stats[:total_competing_olympians]).to eq(3)
-    expect(stats[:average_age]).to eq(30)
-    expect(stats[:average_weight]).to eq({unit: "kg", male_olympians: 110, female_olympians: 100})
+    expect(events.length).to eq(2)
+    expect(events[:Swimming].length).to eq(2)
+    expect(events[:Swimming]).to eq(["Underwater Basket Weaving", "Water Polo"])
+    expect(events[:Running].length).to eq(3)
+    expect(events[:Running]).to eq(['100m', "200m", "200000000m"])
   end
 end
