@@ -154,6 +154,8 @@ GET api/v1/events/:id/medalists
 
 # Database Schema
 
+![Database Schema](https://github.com/Jake0Miller/koroibos/blob/master/Screen%20Shot%202019-11-05%20at%203.03.14%20PM.png?raw=true)
+
 # Setup
 
 Gemfile dependencies `bundle install`
