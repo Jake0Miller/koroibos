@@ -40,8 +40,12 @@ RSpec.describe Olympian do
     end
 
     it 'self.by_age(order)' do
-      expect(Olympian.by_age(:ASC)).to eq([@oly_1])
-      expect(Olympian.by_age(:DESC)).to eq([@oly_3])
+      expect(Olympian.search('youngest')).to eq([{:name=>"Bob", :team=>"Romania", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1}])
+      expect(Olympian.search('oldest')).to eq([{:name=>"Jim", :team=>"Russia", :age=>40, :sport=>"Underwater Basket Weaving", :total_medals_won=>0}])
+      olympians = Olympian.search(nil)["olympians"]
+      expect(olympians.first).to eq({:name=>"Bob", :team=>"Romania", :age=>20, :sport=>"Underwater Basket Weaving", :total_medals_won=>1})
+      expect(olympians.second).to eq({:name=>"Jane", :team=>"USA", :age=>30, :sport=>"Underwater Basket Weaving", :total_medals_won=>1})
+      expect(olympians.third).to eq({:name=>"Jim", :team=>"Russia", :age=>40, :sport=>"Underwater Basket Weaving", :total_medals_won=>0})
     end
 
     it 'self.stats' do
