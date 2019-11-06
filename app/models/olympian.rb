@@ -19,8 +19,14 @@ class Olympian < ApplicationRecord
     }
   end
 
-  def self.by_age(order)
-    order(age: order).limit(1)
+  def self.search(age)
+    if age.nil?
+      {"olympians" => Olympian.all.map(&:format_response)}
+    elsif age == "youngest"
+      order(age: :ASC).limit(1).map(&:format_response)
+    elsif age == "oldest"
+      order(age: :DESC).limit(1).map(&:format_response)
+    end
   end
 
   def self.stats
